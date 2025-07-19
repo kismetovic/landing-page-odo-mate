@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- SEO Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>odo-mate: The Ultimate Motorcycle App for Every Rider</title>
+    <meta name="description"
+        content="Join the odo-mate community! Track your rides, manage motorcycle maintenance, and connect with fellow riders. The all-in-one app built by a rider, for riders. Download the Android beta today!">
+    <meta name="keywords"
+        content="motorcycle app, ride tracker, motorcycle maintenance, odo-mate, biker community, motorcycle log, gps tracking, motorcycle community">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="odo-mate: The Ultimate Motorcycle App for Every Rider">
+    <meta property="og:description"
+        content="Join the odo-mate community! Track your rides, manage motorcycle maintenance, and connect with fellow riders. The all-in-one app built by a rider, for riders. Download the Android beta today!">
+    <meta property="og:image" content="[YOUR_OG_IMAGE_LINK]">
+    <meta property="og:url" content="[YOUR_WEBSITE_URL]">
+    <meta property="og:type" content="website">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo-small.png">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Roboto & Montserrat -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Heroicons (via CDN, SVG sprite) -->
+    <script src="https://unpkg.com/heroicons@2.0.16/dist/24/outline/heroicons-outline.min.js"></script>
+
+    <style>
+        body {
+            background: #121212;
+            color: #f3f3f3;
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+        }
+
+        .accent {
+            color: #FF4500;
+        }
+
+        .btn-accent {
+            background: #FF4500;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-accent:hover,
+        .btn-accent:focus {
+            background: #d63a00;
+            color: #fff;
+        }
+
+        .section-dark {
+            background: #181818;
+        }
+
+        .section-accent {
+            background: #1a1a1a;
+            border-top: 2px solid #FF4500;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 12px;
+            color: #FF4500;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .future-feature-icon {
+            width: 28px;
+            height: 28px;
+            color: #00AEEF;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .footer {
+            background: #181818;
+            color: #aaa;
+            padding: 24px 0 12px 0;
+            font-size: 0.95rem;
+        }
+
+        .footer a {
+            color: #FF4500;
+            margin: 0 8px;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        .hero-bg {
+            position: relative;
+            background: url('./logo-main.png') center center/cover no-repeat;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(18, 18, 18, 0.85);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 60px 20px 40px 20px;
+        }
+
+        .nav-link {
+            color: #f3f3f3 !important;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            color: #FF4500 !important;
+        }
+
+        @media (max-width: 767px) {
+            .feature-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 991px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .buy-coffee-section {
+            background: #181818;
+            border-top: 2px solid #00AEEF;
+            border-bottom: 2px solid #00AEEF;
+            padding: 48px 0;
+        }
+
+        .buy-coffee-btn {
+            background: #00AEEF;
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 14px 36px;
+            border-radius: 30px;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            transition: background 0.2s;
+        }
+
+        .buy-coffee-btn:hover,
+        .buy-coffee-btn:focus {
+            background: #007fa3;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-3">
+            <div class="container">
+                <a class="navbar-brand fw-bold accent" href="#">odo-mate</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#roadmap">The Road Ahead</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#support">Support Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero Section -->
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 class="display-4 fw-bold mb-3">odo-mate: <span class="accent">Your Ultimate Riding Companion</span>
+                </h1>
+                <p class="lead mb-4">Track your rides, manage your motorcycle's health, and never miss a service again.
+                    Built by a rider, for riders.</p>
+                <a href="[YOUR_GOOGLE_PLAY_LINK]" class="btn btn-accent btn-lg shadow-lg mb-2" target="_blank"
+                    rel="noopener">Join the Android Beta on Google Play</a>
+                <div class="mt-2">
+                    <small class="text-secondary">iOS version coming soon!</small>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- From a Rider, For Riders Section -->
+        <section class="section-dark py-5">
+            <div class="container text-center">
+                <h2 class="fw-bold mb-3">More Than an App. It's Our Community.</h2>
+                <p class="fs-5 mx-auto" style="max-width: 700px;">
+                    I am odo-mate, and just like you, my passion is the open road. I've spent countless hours on my bike
+                    and just as many hours wishing for a single app that does it all. So, I decided to build it myself.
+                    <span class="accent fw-bold">odo-mate</span> is my answer—a solo project born from a love for
+                    riding. This isn't just code; it's a commitment to building the best tool for our community. Join me
+                    on this journey.
+                </p>
+            </div>
+        </section>
+        <!-- Core Features Section -->
+        <section id="features" class="py-5">
+            <div class="container">
+                <h2 class="fw-bold text-center mb-4">Everything Your Motorcycle Needs, In Your Pocket.</h2>
+                <div class="feature-grid">
+                    <!-- Feature 1 -->
+                    <div class="text-center">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <use href="#map-pin" />
+                        </svg>
+                        <h5 class="fw-bold">Smart Ride Tracking</h5>
+                        <p class="small">Log every journey with precision. Save your favorite routes and revisit your
+                            best rides using Open Street Maps.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="text-center">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <use href="#wrench-screwdriver" />
+                        </svg>
+                        <h5 class="fw-bold">Proactive Maintenance</h5>
+                        <p class="small">Track past and upcoming services. odo-mate automatically updates your odometer
+                            and notifies you when maintenance is due.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="text-center">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <use href="#motorcycle" />
+                        </svg>
+                        <h5 class="fw-bold">Your Digital Garage</h5>
+                        <p class="small">Add all your motorcycles in one place. Monitor the status and service history
+                            for each bike individually.</p>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="text-center">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <use href="#gauge" />
+                        </svg>
+                        <h5 class="fw-bold">Automatic Odometer</h5>
+                        <p class="small">Keep your bike's mileage perfectly in sync without manual entry. Focus on the
+                            ride, not the paperwork.</p>
+                    </div>
+                    <!-- Feature 5 -->
+                    <div class="text-center">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <use href="#globe-alt" />
+                        </svg>
+                        <h5 class="fw-bold">Multi-Language Support</h5>
+                        <p class="small">odo-mate speaks your language. We're constantly adding more to welcome riders
+                            from around the globe.</p>
+                    </div>
+                    <!-- Feature 6 -->
+                    <div class="text-center">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                            viewBox="0 0 24 24">
+                            <use href="#route" />
+                        </svg>
+                        <h5 class="fw-bold">Route History</h5>
+                        <p class="small">Your personal logbook of every adventure. See where you've been and plan where
+                            you'll go next.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Heroicons SVG Sprite (inline for custom icons) -->
+            <svg style="display:none;">
+                <symbol id="map-pin" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 21c-6-5.686-8-8.686-8-11A8 8 0 1 1 20 10c0 2.314-2 5.314-8 11z" />
+                    <circle cx="12" cy="10" r="3" />
+                </symbol>
+                <symbol id="wrench-screwdriver" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.232 5.232a3 3 0 1 1 4.243 4.243l-7.071 7.071a3 3 0 1 1-4.243-4.243l7.071-7.071z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 16.5l2 2" />
+                </symbol>
+                <symbol id="motorcycle" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm12-4h2l3 3m-5-3l-2-2m0 0l-2-2m2 2h-2m2 2v2m0-2h2" />
+                </symbol>
+                <symbol id="gauge" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 15v2m0-2a3 3 0 1 0-3-3m3 3a3 3 0 1 0 3-3m-3 3V9m0 0a7 7 0 1 1-7 7" />
+                </symbol>
+                <symbol id="globe-alt" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20" />
+                </symbol>
+                <symbol id="route" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4 17c0-2.21 1.79-4 4-4h8a4 4 0 1 1 0 8H8a4 4 0 1 1 0-8h8" />
+                </symbol>
+                <!-- Add more symbols as needed -->
+            </svg>
+        </section>
+        <!-- The Road Ahead Section -->
+        <section id="roadmap" class="section-dark py-5">
+            <div class="container">
+                <h2 class="fw-bold text-center mb-4">The Journey is Just Beginning. Here's What's Next.</h2>
+                <p class="text-center mb-4">Your feedback and support will help build the future of odo-mate. Here's a
+                    sneak peek at the features on our roadmap:</p>
+                <div class="row justify-content-center g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <svg class="future-feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <use href="#lifebuoy" />
+                            </svg>
+                            <span class="fw-bold">Roadside Assistance</span>
+                        </div>
+                        <p class="small ms-4">Instant help when you need it most.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <svg class="future-feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <use href="#users" />
+                            </svg>
+                            <span class="fw-bold">Community Hub</span>
+                        </div>
+                        <p class="small ms-4">Connect with riders, share routes, and join group rides.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <svg class="future-feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <use href="#map" />
+                            </svg>
+                            <span class="fw-bold">Intelligent Route Planner</span>
+                        </div>
+                        <p class="small ms-4">Discover scenic backroads and epic trips recommended by the community.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <svg class="future-feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <use href="#trophy" />
+                            </svg>
+                            <span class="fw-bold">Rider Leaderboards</span>
+                        </div>
+                        <p class="small ms-4">Add a competitive edge to your rides.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <svg class="future-feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <use href="#wrench" />
+                            </svg>
+                            <span class="fw-bold">Nearest Service Finder</span>
+                        </div>
+                        <p class="small ms-4">Quickly locate trusted mechanics and shops nearby.</p>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <svg class="future-feature-icon" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <use href="#calendar" />
+                            </svg>
+                            <span class="fw-bold">Gear & Event Management</span>
+                        </div>
+                        <p class="small ms-4">Keep track of your gear's condition and find local motorcycle events.</p>
+                    </div>
+                </div>
+                <!-- Heroicons SVG Sprite for future features -->
+                <svg style="display:none;">
+                    <symbol id="lifebuoy" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="4" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.93 4.93l4.24 4.24M19.07 4.93l-4.24 4.24M19.07 19.07l-4.24-4.24M4.93 19.07l4.24-4.24" />
+                    </symbol>
+                    <symbol id="users" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm6 13v-2a4 4 0 0 0-3-3.87M6 7a4 4 0 1 1 8 0 4 4 0 0 1-8 0z" />
+                    </symbol>
+                    <symbol id="map" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 20l-5.447-2.724A2 2 0 0 1 2 15.382V6.618a2 2 0 0 1 1.553-1.894L9 2m0 0l6 2.724M9 2v18m6-15.276l5.447 2.724A2 2 0 0 1 22 8.618v8.764a2 2 0 0 1-1.553 1.894L15 22m0 0V4.724" />
+                    </symbol>
+                    <symbol id="trophy" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 21h8m-4-4v4m0-4a7 7 0 0 1-7-7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5a7 7 0 0 1-7 7z" />
+                    </symbol>
+                    <symbol id="wrench" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.232 5.232a3 3 0 1 1 4.243 4.243l-7.071 7.071a3 3 0 1 1-4.243-4.243l7.071-7.071z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 16.5l2 2" />
+                    </symbol>
+                    <symbol id="calendar" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 2v4M8 2v4M3 10h18" />
+                    </symbol>
+                </svg>
+            </div>
+        </section>
+        <!-- Support the Vision / Buy Me a Coffee Section -->
+        <section id="support" class="buy-coffee-section text-center">
+            <div class="container">
+                <h2 class="fw-bold mb-3">Fuel the Journey. Support odo-mate.</h2>
+                <p class="fs-5 mx-auto" style="max-width: 700px;">
+                    As a solo developer, every bit of support makes a huge difference. Your contribution directly funds
+                    development, server costs, and helps bring new features to life faster. As a thank you, supporters
+                    will receive premium app features based on their donation level.
+                </p>
+                <a href="https://www.buymeacoffee.com/odomate" target="_blank"><img
+                        src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee"
+                        style="height: 60px !important;width: 217px !important;"></a>
+                <div class="mt-2">
+                    <small class="text-secondary">Help shape the future of riding.</small>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="mb-2 mb-md-0">© 2025 odo-mate. Ride Safe.</div>
+            <!-- <div class="mb-2 mb-md-0">
+                <a href="#" aria-label="Twitter/X" title="Twitter/X">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6" />
+                    </svg>
+                </a>
+                <a href="#" aria-label="Instagram" title="Instagram">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" />
+                        <circle cx="12" cy="12" r="5" />
+                        <circle cx="17" cy="7" r="1.5" />
+                    </svg>
+                </a>
+                <a href="#" aria-label="Discord" title="Discord">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.5 17.5C16.5 16.5 15 16 12 16s-4.5.5-5.5 1.5M7 7c1-1 2.5-1.5 5-1.5s4 .5 5 1.5M7 7v2.5c0 1.5 2.5 2.5 5 2.5s5-1 5-2.5V7" />
+                    </svg>
+                </a>
+            </div> -->
+            <div>
+                Contact: <a href="mailto:odomate2025@gmail.com" class="accent">odomate2025@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
